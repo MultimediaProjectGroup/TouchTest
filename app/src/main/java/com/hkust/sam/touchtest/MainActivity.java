@@ -1,6 +1,7 @@
 package com.hkust.sam.touchtest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
@@ -23,13 +24,37 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Intent intent = new Intent(getApplicationContext(), TouchController.class);
+        intent.setAction(Constant.ACTION_NOTIFICATION);
+        startService(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Intent intent = new Intent(getApplicationContext(), TouchController.class);
+        stopService(intent);
+    }
+
     public void VolumeUp(View view){
-//        RootShellCmd rootShellCmd = new RootShellCmd();
-        rootShellCmd.simulateKey(KeyEvent.KEYCODE_VOLUME_UP);
+        Intent intent = new Intent(getApplicationContext(), TouchController.class);
+        intent.setAction(Constant.ACTION_VOLUME_UP);
+        startService(intent);
     }
 
     public void VolumeDown(View view){
-        rootShellCmd.simulateKey(KeyEvent.KEYCODE_VOLUME_DOWN);
+        Intent intent = new Intent(getApplicationContext(), TouchController.class);
+        intent.setAction(Constant.ACTION_VOLUME_DOWN);
+        startService(intent);
+    }
+
+    public void Home(View view){
+        Intent intent = new Intent(getApplicationContext(), TouchController.class);
+        intent.setAction(Constant.ACTION_NOTIFICATION);
+        startService(intent);
     }
 
     public void showInfo(View view){
@@ -38,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         int height = displaymetrics.heightPixels;
         int width = displaymetrics.widthPixels;
         int colorDep = getWindowManager().getDefaultDisplay().getPixelFormat();
-//        String android_id = Secure.getString(this.getContentResolver(), Secure.ANDROID_ID);
+        //String android_id = Secure.getString(this.getContentResolver(), Secure.ANDROID_ID);
         TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
 
         Calendar c = Calendar.getInstance();
@@ -49,13 +74,4 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
     }
 
-    public void Home(View view){
-//        rootShellCmd.simulateKey(KeyEvent.KEYCODE_MOVE_HOME);
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        int y = displaymetrics.heightPixels;
-        int x = displaymetrics.widthPixels;
-        String temp = x/2 + " 1 "+ x/2 +" "+y;
-        rootShellCmd.simulateSwip(temp);
-    }
 }
