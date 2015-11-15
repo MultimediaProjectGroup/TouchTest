@@ -51,6 +51,7 @@ public class TouchController extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
 
+    //handle the intent with action
     private void handleIntent(Intent intent) {
         if (intent == null || intent.getAction() == null) return;
         // get the action specified in the intent. The actioins are given in Constants.
@@ -66,7 +67,7 @@ public class TouchController extends Service {
 
 
     public void volumeUp() {
-//        RootShellCmd rootShellCmd = new RootShellCmd();
+        //RootShellCmd rootShellCmd = new RootShellCmd();
         rootShellCmd.simulateKey(KeyEvent.KEYCODE_VOLUME_UP);
     }
 
@@ -76,8 +77,7 @@ public class TouchController extends Service {
 
 
     public void home() {
-//        rootShellCmd.simulateKey(KeyEvent.KEYCODE_MOVE_HOME);
-
+        //rootShellCmd.simulateKey(KeyEvent.KEYCODE_MOVE_HOME);
         Toast.makeText(this, "home", Toast.LENGTH_SHORT).show();
         DisplayMetrics displaymetrics = getResources().getDisplayMetrics();
         int y = displaymetrics.heightPixels;

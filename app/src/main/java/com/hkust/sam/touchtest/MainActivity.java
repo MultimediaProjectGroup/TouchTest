@@ -39,24 +39,28 @@ public class MainActivity extends AppCompatActivity {
         stopService(intent);
     }
 
+    //when up btn clicked
     public void VolumeUp(View view){
         Intent intent = new Intent(getApplicationContext(), TouchController.class);
         intent.setAction(Constant.ACTION_VOLUME_UP);
         startService(intent);
     }
 
+    //when down btn clicked
     public void VolumeDown(View view){
         Intent intent = new Intent(getApplicationContext(), TouchController.class);
         intent.setAction(Constant.ACTION_VOLUME_DOWN);
         startService(intent);
     }
 
+    //when home btn clicked
     public void Home(View view){
         Intent intent = new Intent(getApplicationContext(), TouchController.class);
         intent.setAction(Constant.ACTION_NOTIFICATION);
         startService(intent);
     }
 
+    //when info btn clicked
     public void showInfo(View view){
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
