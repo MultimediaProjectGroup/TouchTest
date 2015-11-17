@@ -54,7 +54,7 @@ public class TouchController extends Service {
     //handle the intent with action
     private void handleIntent(Intent intent) {
         if (intent == null || intent.getAction() == null) return;
-        // get the action specified in the intent. The actioins are given in Constants.
+        // get the action specified in the intent. The actions are given in Constants.
         String action = intent.getAction();
         if (intent.getAction().equalsIgnoreCase(Constant.ACTION_NOTIFICATION)) {
             home();
